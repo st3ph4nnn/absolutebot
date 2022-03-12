@@ -29,10 +29,10 @@ client.on("messageCreate", (message) => {
     if (message.author.bot || slurs_check(message))
         return;
 
-    if (!message.content.startsWith(config.prefix))
+    if (!message.content.startsWith(process.env.PREFIX))
         return;
     
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
     const cmd = client.commands.get(command);
@@ -43,4 +43,4 @@ client.on("messageCreate", (message) => {
     cmd.run(client, message, args);
 });
 
-client.login(config.token);
+client.login(process.env.TOKEN);
