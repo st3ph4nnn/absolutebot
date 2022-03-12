@@ -25,8 +25,10 @@ for (const file of commands) {
 client.on("messageCreate", (message) => {
     bump(message);
 
-    if (message.author.bot || slurs_check(message))
+    if (message.author.bot)
         return;
+
+    slurs_check(message);
 
     if (!message.content.startsWith(process.env.PREFIX))
         return;
