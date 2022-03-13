@@ -7,8 +7,22 @@ const client = new Client({
 const slurs_check = require('./misc/slurs');
 const bump = require('./misc/bump');
 
+var activities = [
+    'chatty wont let me out of his basement',
+    'please stop abusing gas tanks lord',
+    'use abs! to call me',
+    'use abs!ask to ask me anything',
+    'ari is a british bitch with bad dental care',
+    'with your mom'
+]
+
 client.on("ready", () => {
     console.log("logged in");
+    client.user.setActivity(activities[Math.floor(Math.random() * activities.length)]);
+
+    setInterval(() => {
+        client.user.setActivity(activities[Math.floor(Math.random() * activities.length)]);
+    }, 60000);
 });
 
 client.commands = new Collection();
@@ -30,10 +44,10 @@ client.on("messageCreate", (message) => {
 
     slurs_check(message);
 
-    if (!message.content.startsWith(process.env.PREFIX))
+    if (!message.content.startsWith("abs!"))
         return;
     
-    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+    const args = message.content.slice("abs!".length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
     const cmd = client.commands.get(command);
@@ -44,4 +58,4 @@ client.on("messageCreate", (message) => {
     cmd.run(client, message, args);
 });
 
-client.login(process.env.TOKEN);
+client.login("OTQwMjQxMTI3NzUwMTE5NDg2.YgEhyQ.kI1nio1J0EYZFd6qL8KSUTZUWIA");
