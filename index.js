@@ -58,4 +58,4 @@ client.on("messageCreate", (message) => {
     cmd.run(client, message, args);
 });
 
-client.login("OTQwMjQxMTI3NzUwMTE5NDg2.YgEhyQ.kI1nio1J0EYZFd6qL8KSUTZUWIA");
+client.login("");
