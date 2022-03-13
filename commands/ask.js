@@ -7,7 +7,7 @@ module.exports = {
     run: (client, message, args) => {
         if (!args[0])
             return;
-        
-        message.reply(good[Math.floor(Math.random() * good.length)]);
+
+    message.reply(replies[Math.floor(Math.random() * replies.length)]);
     }
 }

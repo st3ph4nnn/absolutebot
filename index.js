@@ -4,6 +4,8 @@ const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
+const config = require('./cfg.js');
+
 const slurs_check = require('./misc/slurs');
 const bump = require('./misc/bump');
 
@@ -44,10 +46,10 @@ client.on("messageCreate", (message) => {
 
     slurs_check(message);
 
-    if (!message.content.startsWith("abs!"))
+    if (!message.content.startsWith(config.prefix))
         return;
     
-    const args = message.content.slice("abs!".length).trim().split(/ +/g);
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
     const cmd = client.commands.get(command);
@@ -58,4 +60,4 @@ client.on("messageCreate", (message) => {
     cmd.run(client, message, args);
 });
 
-client.login("OTQwMjQxMTI3NzUwMTE5NDg2.YgEhyQ.kI1nio1J0EYZFd6qL8KSUTZUWIA");
+client.login(config.token);
